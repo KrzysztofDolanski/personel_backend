@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.ItemDto;
 import com.example.demo.entity.Item;
 import com.example.demo.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,8 +25,8 @@ public class ItemController {
     }
 
     @GetMapping("/items")
-    public List<Item> getAllItems(){
-        return itemService.getAll();
+    public List<ItemDto> getAllItems(){
+        return itemService.getAll().stream().map(ItemDto::of).collect(Collectors.toList());
     }
 
     @DeleteMapping("/items")

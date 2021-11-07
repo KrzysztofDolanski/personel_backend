@@ -40,9 +40,9 @@ public class EmployeeController {
         return EmployeeDto.of(empServ.findById(idEmployee));
     }
 
-    @DeleteMapping("/employees")
-    public ResponseEntity deleteEmployee(@RequestBody Long id){
-        empServ.deleteById(id);
+    @DeleteMapping("/employees/{idEmployee}")
+    ResponseEntity deleteEmployee(@PathVariable Long idEmployee){
+        empServ.deleteById(idEmployee);
         return ResponseEntity.ok().build();
     }
 
