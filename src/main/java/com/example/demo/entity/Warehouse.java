@@ -11,7 +11,7 @@ import java.util.Set;
 public class Warehouse {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idWarehouse;
 
     private String name;

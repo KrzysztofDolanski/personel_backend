@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.EmployeeDto;
 import com.example.demo.entity.Employee;
 import com.example.demo.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
@@ -19,8 +20,8 @@ public class EmployeeService {
 
     private final EmployeeRepository empRepo;
 
-    public Employee save(Employee employee) {
-        return empRepo.save(employee);
+    public Employee save(EmployeeDto employee) {
+        return empRepo.save(Employee.of(employee));
     }
 
     public List<Employee> findAll() {
@@ -38,4 +39,5 @@ public class EmployeeService {
     public Employee findById(Long id) {
         return empRepo.findById(id).orElseThrow();
     }
+
 }
