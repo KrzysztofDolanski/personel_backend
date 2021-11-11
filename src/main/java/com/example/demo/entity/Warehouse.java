@@ -16,6 +16,6 @@ public class Warehouse {
 
     private String name;
 
-    @ManyToMany(mappedBy = "warehouses")
-    private Set<Item> items;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "warehouse")
+    private List<Item> items;
 }
