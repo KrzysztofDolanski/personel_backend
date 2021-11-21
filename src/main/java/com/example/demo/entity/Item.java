@@ -1,10 +1,9 @@
 package com.example.demo.entity;
 
+import com.example.demo.dto.ItemSaveDto;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -25,4 +24,11 @@ public class Item {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idWarehouse")
     private Warehouse warehouse;
+
+    public static Item of(ItemSaveDto itemDto) {
+        Item item = new Item();
+        item.setName(item.getName());
+        item.setQuantity(item.getQuantity());
+        return item;
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +30,9 @@ public class QuantityTypeService {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok().build();
+    }
+
+    public Optional<QuantityType> findById(Long idWarehouse) {
+        return quanRepo.findById(idWarehouse);
     }
 }

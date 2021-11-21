@@ -55,4 +55,8 @@ public class WarehouseService {
         WarehouseModuleDto warehouseModuleDto = new WarehouseModuleDto(selectedWarehouseDto, warehouseDtoList, itemDtoList);
         return warehouseModuleDto;
     }
+
+    public Optional<Warehouse> findById(Long idWarehouse) {
+        return wareRepo.findById(idWarehouse);
+    }
 }

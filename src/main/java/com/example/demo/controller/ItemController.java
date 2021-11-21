@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.EmployeeDto;
 import com.example.demo.dto.ItemDto;
+import com.example.demo.dto.ItemSaveDto;
 import com.example.demo.entity.Item;
 import com.example.demo.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -20,8 +23,8 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping("/items")
-    public Item saveItem(@RequestBody Item item){
-        return itemService.save(item);
+    public ItemDto saveItem(@RequestBody ItemSaveDto item){
+        return ItemDto.of(itemService.save(item));
     }
 
     @GetMapping("/items")
@@ -34,4 +37,14 @@ public class ItemController {
         itemService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/items/{idItem}")
+    public ItemDto getItem(@PathVariable Long idItem) throws InterruptedException {
+        Optional<Item> byId = itemService.findById(idItem);
+        if (byId.isEmpty()){
+            throw new RuntimeException("Something went wrong in get Item");
+        };
+        return ItemDto.of(byId.get());
+    }
+
 }
